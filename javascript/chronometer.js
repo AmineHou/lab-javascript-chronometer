@@ -8,10 +8,15 @@ class Chronometer {
   start(callback) {
     // ... your code goes here
     this.intervalId = setInterval(() => {
+      this.currentTime += 1;
       if (typeof callback === 'function') callback();
       //if (callback) callback()
-      this.currentTime += 1;
     }, 1000);
+
+    // 2e interval toutes les 10ms
+    // This interval increments the milliSecondCounter every 10ms (++)
+    // AND executes the printTime (callback) at every iteration --> du coup la fonction callback en haut est obsolète
+
   }
 
   getMinutes() {
@@ -24,6 +29,8 @@ class Chronometer {
     // ... your code goes here
     return this.currentTime % 60;
   }
+
+  // Create a getMilliSeconds method in the Chronometer class
 
   computeTwoDigitNumber(value) {
     // ... your code goes here
@@ -48,6 +55,7 @@ class Chronometer {
     const minutes = this.computeTwoDigitNumber(this.getMinutes());
     const seconds = this.computeTwoDigitNumber(this.getSeconds());
     return `${minutes}:${seconds}`;
+    // --> affiche "OO:O1", "01:30", ...
   }
 }
 
